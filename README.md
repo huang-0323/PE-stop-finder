@@ -1,6 +1,3 @@
----
-enable html: true
----
 # **PE-stop-finder**
 ---
 PE-stop-finder is an easy-to-use, fast program that can be used for genome analysis of the PE gene-stop experiment and subsequent sgRNA design. It has low configuration requirements and can be run on a personal laptop.
@@ -16,16 +13,16 @@ PE-stop-finder have following features can be apply on PE-stop editing process a
 ## **Requirements**
 ---
 * Software 
-  1. Python3
+  1. Python3  
      Dependent Python modules:
-     [pysam](https://pysam.readthedocs.io/en/latest/index.html)
-     [pandas](https://pandas.pydata.org/)
-     [regex](https://pypi.org/project/regex/)
-     [biopython](https://pypi.org/project/biopython/)
-  2. R(>4.0)
+    * [pysam](https://pysam.readthedocs.io/en/latest/index.html)
+    * [pandas](https://pandas.pydata.org/)
+    * [regex](https://pypi.org/project/regex/)
+    * [biopython](https://pypi.org/project/biopython/)
+  2. R(>4.0)  
      Dependent R packages:
-     [ggplot2](https://github.com/tidyverse/ggplot2)
-     [stringr](https://mirrors.tuna.tsinghua.edu.cn/CRAN/web/packages/stringr/index.html)
+    * [ggplot2](https://github.com/tidyverse/ggplot2)
+    * [stringr](https://mirrors.tuna.tsinghua.edu.cn/CRAN/web/packages/stringr/index.html)
 
 
 * Data
@@ -142,4 +139,5 @@ Ea alii putent integre sed.
 
 ## Citation
 ---
+
 
