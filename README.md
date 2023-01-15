@@ -23,6 +23,7 @@ PE-stop-finder have following features can be apply on PE-stop editing process a
      Dependent R packages:
     * [ggplot2](https://github.com/tidyverse/ggplot2)
     * [stringr](https://mirrors.tuna.tsinghua.edu.cn/CRAN/web/packages/stringr/index.html)
+  3. [ORFinder](https://www.ncbi.nlm.nih.gov/orffinder/)
 
 
 * Data
