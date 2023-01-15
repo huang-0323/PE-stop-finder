@@ -1,0 +1,117 @@
+#!/home/clay/miniconda3/envs/codeing/bin/python
+# -*- encoding: utf-8 -*-
+'''
+@File    :   PPSID
+@Time    :   2022/12/22 01:18:52
+@Author  :   Xiannhui Zhou
+@Version :   1.0
+@Contact :   zhou_xiannhui@163.com
+'''
+
+# here import the need moudle
+import click
+from src.get_gene_data import get_gene_data
+from src.get_region import get_region
+from src.get_motif import get_condition
+from src.get_type import get_type
+from src.out_summary import out_summary
+from src.get_gene_seq import get_gene_seq
+from src.out_design import out_design
+
+
+@click.group()
+def cli():
+    pass
+
+
+# region(创建summmary'命令)
+@click.command()
+# region(定义参数)
+@click.option(
+    '-f',
+    '--genome',
+    type=click.Path(exists=True, file_okay=True),
+    help='Select the genome file. ',
+    required=True,
+)  # 选择基因组文件,同时检查文件是否存在以及是否为文件，同时必须输入
+@click.option(
+    '-g',
+    '--gff',
+    type=click.Path(exists=True, file_okay=True),
+    help='Select the gff file. ',
+    required=True,
+)  # 选择gff文件,同时检查文件是否存在以及是否为文件，同时必须输入
+@click.option(
+    '-r',
+    '--region',
+    type=str,
+    default='default',
+    show_default=True,
+    help='Set the design area.',
+)  # 设置设计区域，默认为default
+@click.option(
+    '-m',
+    '--motif',
+    type=click.Path(exists=True, file_okay=True),
+    help='Set the motif sequence.',
+)
+@click.option(
+    '-o',
+    '--output',
+    type=str,
+    default='hg38',
+)
+def summary(genome, gff, region, motif, output):
+    # click.echo(f'{genome}, {gff}, {region}, {motif}, {output}')
+    gene_data = get_gene_data(genome, gff)
+    if region != 'default':
+        gene_data = get_region(gene_data, region)
+    gene_data.to_pickle('gene_seq.pkl')
+    condition = get_condition(motif)
+    gene_infor = get_type(gene_data, condition[0], condition[1])
+    out_summary(output, gene_infor, genome, gff, region, motif, condition[0])
+    return 1
+
+
+@click.command()
+@click.option(
+    '-in',
+    '--seq',
+    type=click.Path(file_okay=True),
+    default='gene_seq.pkl',
+    help='Select the genome file. ',
+    required=True,
+)
+@click.option(
+    '-if',
+    '--isfasta',
+    type=bool,
+    default=False,
+    help='runing in the orf mode',
+)
+@click.option(
+    '-m',
+    '--motif',
+    type=click.Path(exists=True, file_okay=True),
+    help='Select the gff file. ',
+    required=True,
+)
+@click.option(
+    '-o',
+    '--output',
+    type=str,
+    default='hg38',
+)
+def design(seq, isfasta, motif, output):
+    click.echo(f'{seq}, {isfasta}, {motif}, {output}')
+    gene_seq = get_gene_seq(seq, isfasta)
+    condition = get_condition(motif)
+    out_design(gene_seq, condition[2], isfasta, output)
+
+
+# region(将命令添加到命令组)
+cli.add_command(summary)
+cli.add_command(design)
+
+if __name__ == '__main__':
+    cli()
