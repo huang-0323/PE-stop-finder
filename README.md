@@ -1,24 +1,21 @@
 # **PE-stop-finder**
 
-
 PE-stop-finder is an easy-to-use, fast program that can be used for genome analysis of the PE gene-stop experiment and subsequent sgRNA design. It has low configuration requirements and can be run on a personal laptop.
+
 * * *
 
-
 ## **Feature**
-
 
 PE-stop-finder have following features can be apply on PE-stop editing process and experiment design.
 
 - All editability at different level(ORF/Exon/Transcript/Gene) info from genome are summarized into a simple result.
 - Different motif editability result are summarized into an CSV file.
 - Detail sgRNA design from specific input sequence are output into a GFF-format file.
-- Analysis results can be visualized in a variety of graphs(Stack bar-chart/pie-chart).
+- Analysis results can be visualized in a variety of graphs(Stack bar-chart/Pie-chart).
 
 * * *
 
 ## **Requirements**
-
 
 - Software 
   1. Python3\
@@ -49,7 +46,6 @@ PE-stop-finder have following features can be apply on PE-stop editing process a
 * * *
 
 ## **Usage**
-
 
 PE-stop-finder program are divide into three function, each function can be run independently, but the result files between functions can be called to each other.
 
@@ -138,22 +134,32 @@ sgRNA design function will output .out file, this file has seven columns separat
 
 ### **Function 3: Analysis result visualization**
 
-    Lorem.ipsum(epicurei[, saepe[, explicari]])
+```shell
+python PPSID visual --help
+Usage: PPSID visual [OPTIONS]
+
+Options:
+  -in, --input TEXT  Input file prefix  [required]
+  --help             Show this message and exit.
+```
 
 #### **Parameters**
 
-| Senserit  | Repudiandae                         | Vis |
-| --------- | ----------------------------------- | --- |
-| epicurei  | Usu no tale prima, vis fugit  id.   | Cu  |
-| saepe     | Ea vis graecis concludaturque.      | Cum |
-| explicari | Clita quando `this` in mea `saepe`. | Cum |
+| Parmeters | Description                 | Input |
+| --------- | --------------------------- | ----- |
+| -in       | input file, default are fly | .csv  |
 
 #### **result file**
 
-Ea alii putent integre sed.
+Visualization function will output two type of .pdf file, including 3 level(exon, transcription, gene) editability pie-chart of each motif and 3 level editability Stack bar-chart of each chromosome.
+
+[ATG.NGG_coverage](test/ATG.NGG_coverage.pdf)
+[NC_004353.4_editability](test/NC_004353.4_editability.pdf)
 
 * * *
 
 ## Citation
+
+Ziguo Song, Guiquan Zhang., Shuhong Huang, Yao Liu, Guanglei Li, Xianhui Zhou, Jiayuan Sun, Pengfei Gao, Yulin Chen, Xingxu Huang, Jianghuai Liu, Xiaolong Wang. (2023) PE-STOP: Programmable mutation of arbitrary amino acid into stop codons via prime editing. underreview.
 
 * * *
