@@ -2,12 +2,33 @@ library(ggplot2)
 library(reshape2)
 
 draw_pie <- function(input_dataframe){
-  pdf(file = paste(piedata[1,4],"_coverage.pdf",sep = ""),width = 6,height = 6)
+  # exon
+  pdf(file = paste(piedata[1,4],piedata[1,1],"coverage.pdf",sep = "_"),width = 6,height = 6)
   legend_text <- c("Targetable","Untargetable")
   color <- c("#5eaded","#ffe0b3")
   pie(as.numeric(piedata[1,2:3]*100),
       labels = paste(round(as.numeric(piedata[1,2:3]*100),2),"%",sep = ""),
-      main = paste(piedata[1,4],"_editability",sep = ""),
+      main = paste(piedata[1,4],piedata[1,1],"editability",sep = "_"),
+      col = color)
+  legend("topright",legend_text,fill = color)
+  dev.off()
+  # id
+  pdf(file = paste(piedata[2,4],piedata[2,1],"coverage.pdf",sep = "_"),width = 6,height = 6)
+  legend_text <- c("Targetable","Untargetable")
+  color <- c("#5eaded","#ffe0b3")
+  pie(as.numeric(piedata[2,2:3]*100),
+      labels = paste(round(as.numeric(piedata[2,2:3]*100),2),"%",sep = ""),
+      main = paste(piedata[2,4],piedata[2,1],"editability",sep = "_"),
+      col = color)
+  legend("topright",legend_text,fill = color)
+  dev.off()
+  # gene
+  pdf(file = paste(piedata[3,4],piedata[3,1],"coverage.pdf",sep = "_"),width = 6,height = 6)
+  legend_text <- c("Targetable","Untargetable")
+  color <- c("#5eaded","#ffe0b3")
+  pie(as.numeric(piedata[3,2:3]*100),
+      labels = paste(round(as.numeric(piedata[3,2:3]*100),2),"%",sep = ""),
+      main = paste(piedata[3,4],piedata[3,1],"editability",sep = "_"),
       col = color)
   legend("topright",legend_text,fill = color)
   dev.off()
