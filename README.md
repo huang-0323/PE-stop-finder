@@ -1,12 +1,12 @@
 # **PE-stop-finder**
 
-* * *
 
 PE-stop-finder is an easy-to-use, fast program that can be used for genome analysis of the PE gene-stop experiment and subsequent sgRNA design. It has low configuration requirements and can be run on a personal laptop.
+* * *
+
 
 ## **Feature**
 
-* * *
 
 PE-stop-finder have following features can be apply on PE-stop editing process and experiment design.
 
@@ -15,9 +15,10 @@ PE-stop-finder have following features can be apply on PE-stop editing process a
 - Detail sgRNA design from specific input sequence are output into a GFF-format file.
 - Analysis results can be visualized in a variety of graphs(Stack bar-chart/pie-chart).
 
+* * *
+
 ## **Requirements**
 
-* * *
 
 - Software 
   1. Python3\
@@ -30,6 +31,7 @@ PE-stop-finder have following features can be apply on PE-stop editing process a
      Dependent R packages:
   - [ggplot2](https://github.com/tidyverse/ggplot2)
   - [stringr](https://mirrors.tuna.tsinghua.edu.cn/CRAN/web/packages/stringr/index.html)
+  - [reshape2](https://mirrors.tuna.tsinghua.edu.cn/CRAN/web/packages/reshape2/index.html)
   3. [ORFinder](https://www.ncbi.nlm.nih.gov/orffinder/)
 
 
@@ -44,9 +46,10 @@ PE-stop-finder have following features can be apply on PE-stop editing process a
       content should be (edit motif)-(window length)-(PAM)\
     _example: CAAN(3,12)NGG_
 
+* * *
+
 ## **Usage**
 
-* * *
 
 PE-stop-finder program are divide into three function, each function can be run independently, but the result files between functions can be called to each other.
 
@@ -104,7 +107,7 @@ Usage: PPSID design [OPTIONS]
 
 Options:
   -in, --seq PATH         Select the genome file.   [required]
-  -if, --isfasta BOOLEAN  runing in the orf mode
+  -if, --isfasta BOOLEAN  runing orf mode
   -m, --motif PATH        Select the gff file.   [required]
   -o, --output TEXT
   --help                  Show this message and exit.
@@ -148,6 +151,8 @@ sgRNA design function will output .out file, this file has seven columns separat
 #### **result file**
 
 Ea alii putent integre sed.
+
+* * *
 
 ## Citation
 

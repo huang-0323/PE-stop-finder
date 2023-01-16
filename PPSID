@@ -16,6 +16,7 @@ from src.get_type import get_type
 from src.out_summary import out_summary
 from src.get_gene_seq import get_gene_seq
 from src.out_design import out_design
+import os
 
 
 @click.group()
@@ -108,9 +109,23 @@ def design(seq, isfasta, motif, output):
     out_design(gene_seq, condition[2], isfasta, output)
 
 
+@click.command()
+@click.option(
+    '-in',
+    '--input',
+    type=str,
+    default='fly',
+    help='Input file prefix',
+    required=True,
+)
+
+def visual(input):
+    os.system(f'Rscript src/visual.R {input}')
+
 # region(将命令添加到命令组)
 cli.add_command(summary)
 cli.add_command(design)
+cli.add_command(visual)
 
 if __name__ == '__main__':
     cli()
