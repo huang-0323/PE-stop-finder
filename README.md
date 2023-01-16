@@ -153,13 +153,15 @@ Options:
 
 Visualization function will output two type of .pdf file, including 3 level(exon, transcription, gene) editability pie-chart of each motif and 3 level editability Stack bar-chart of each chromosome.
 
-[ATG.NGG_coverage](test/ATG.NGG_coverage.pdf)
+[ATG.NGG_exon_coverage](test/ATG.NGG_exon_coverage.pdf)
+[ATG.NGG_id_coverage](test/ATG.NGG_id_coverage.pdf)
+[ATG.NGG_gene_coverage](test/ATG.NGG_gene_coverage.pdf)
 [NC_004353.4_editability](test/NC_004353.4_editability.pdf)
 
 * * *
 
 ## Citation
 
-Ziguo Song, Guiquan Zhang., Shuhong Huang, Yao Liu, Guanglei Li, Xianhui Zhou, Jiayuan Sun, Pengfei Gao, Yulin Chen, Xingxu Huang, Jianghuai Liu, Xiaolong Wang. (2023) PE-STOP: Programmable mutation of arbitrary amino acid into stop codons via prime editing. underreview.
+Ziguo Song, Guiquan Zhang., Shuhong Huang, Yao Liu, Guanglei Li, Xianhui Zhou, Jiayuan Sun, Pengfei Gao, Yulin Chen, Xingxu Huang, Jianghuai Liu, Xiaolong Wang. (2023) PE-STOP: Programmable mutation of arbitrary amino acid into stop codons via prime editing. xxxxxx.
 
 * * *
