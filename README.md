@@ -42,6 +42,18 @@ PE-stop-finder have following features can be apply on PE-stop editing process a
   - motif annotation file(.motif)\
       content should be (edit motif)-(window length)-(PAM)\
     _example: CAAN(3,12)NGG_
+  - Base combination
+    | A       | G        | C       | T       |
+    | ------- | -------- | ------- | ------- |
+    | Adenine | Cytosine | Guanine | Thymine |
+    
+    | R      | Y      | S      | W      | K      | M      |
+    | ------ | ------ | ------ | ------ | ------ | ------ |
+    | A or G | C or T | G or C | A or T | G or T | A or C |
+    
+    | B           | D           | H           | V           | N        |
+    | ----------- | ----------- | ----------- | ----------- | -------- |
+    | C or G or T | A or G or T | A or C or T | A or C or G | Any Base |
 
 * * *
 
