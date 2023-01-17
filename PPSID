@@ -1,3 +1,4 @@
+#!/home/clay/miniconda3/envs/codeing/bin/python
 # -*- encoding: utf-8 -*-
 '''
 @File    :   PPSID
@@ -11,6 +12,7 @@
 import click
 from src.get_gene_data import get_gene_data
 from src.get_region import get_region
+from src.get_orf import get_orf
 from src.get_motif import get_condition
 from src.get_type import get_type
 from src.out_summary import out_summary
@@ -42,6 +44,13 @@ def cli():
     required=True,
 )  # 选择gff文件,同时检查文件是否存在以及是否为文件，同时必须输入
 @click.option(
+    '-if',
+    'isfasta',
+    type=bool,
+    default=False,
+    help='True here when running with the ORF region',
+)
+@click.option(
     '-r',
     '--region',
     type=str,
@@ -61,12 +70,15 @@ def cli():
     type=str,
     default='hg38',
 )
-def summary(genome, gff, region, motif, output):
+def summary(genome, gff, isfasta, region, motif, output):
     # click.echo(f'{genome}, {gff}, {region}, {motif}, {output}')
-    gene_data = get_gene_data(genome, gff)
-    if region != 'default':
-        gene_data = get_region(gene_data, region)
-    gene_data.to_pickle('gene_seq.pkl')
+    if isfasta is True:
+        gene_data = get_orf(genome)
+    else:
+        gene_data = get_gene_data(genome, gff)
+        if region != 'default':
+            gene_data = get_region(gene_data, region)
+        gene_data.to_pickle('gene_seq.pkl')
     condition = get_condition(motif)
     gene_infor = get_type(gene_data, condition[0], condition[1])
     out_summary(output, gene_infor, genome, gff, region, motif, condition[0])
@@ -103,7 +115,7 @@ def summary(genome, gff, region, motif, output):
     default='hg38',
 )
 def design(seq, isfasta, motif, output):
-    click.echo(f'{seq}, {isfasta}, {motif}, {output}')
+    # click.echo(f'{seq}, {isfasta}, {motif}, {output}')
     gene_seq = get_gene_seq(seq, isfasta)
     condition = get_condition(motif)
     out_design(gene_seq, condition[2], isfasta, output)
@@ -118,9 +130,9 @@ def design(seq, isfasta, motif, output):
     help='Input file prefix',
     required=True,
 )
-
 def visual(input):
     os.system(f'Rscript src/visual.R {input}')
+
 
 # region(将命令添加到命令组)
 cli.add_command(summary)
