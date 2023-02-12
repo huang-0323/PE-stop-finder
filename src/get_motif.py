@@ -18,12 +18,18 @@ def get_condition(motif):
         ['N', '[ACGT]'],
         ['(', '{'],
         [')', '}'],
+        ['-', ','],
     ]
     with open(motif, 'r') as f:
         f_in = f.read().upper().strip().splitlines()
-    col = []
-    for item in f_in:
-        col.append(item.split('(')[0][:3] + '-' + item.split(')')[-1][-3:])
+    # col, codons, direction = [], [],[]
+    # for item in f_in:
+    #     col.append(item.split(' ')[0])
+    #     codons.append([item.split(' ')[1], int(item.split(' ')[-1])])
+    # if item[-1]== 'F':
+    #     codons_for.append(item.split(' ')[1])
+    # else:
+    #     codons_re.append(item.split(' ')[1])
     conditions = []
     condition_all = ''
     for item in range(len(f_in)):
@@ -32,7 +38,7 @@ def get_condition(motif):
         conditions.append(regex.compile(f_in[item]))
         condition_all += f'{f_in[item]}|'
     condition_all = regex.compile(condition_all[:-1])
-    return [col, f_in, condition_all]
+    return [conditions, condition_all]
 
 
 # a = get_condition(motif)

@@ -12,10 +12,12 @@
 import click
 from src.get_gene_data import get_gene_data
 from src.get_region import get_region
+from src.get_exon import exon_create
+from src.del_utr import combine_exon
 from src.get_orf import get_orf
 from src.get_motif import get_condition
-from src.get_type import get_type
-from src.out_summary import out_summary
+from src.get_type import get_pos
+from src.out_summary import out_orf_summary, out_gene_summary
 from src.get_gene_seq import get_gene_seq
 from src.out_design import out_design
 import os
@@ -27,8 +29,13 @@ def cli():
 
 
 # region(创建summmary'命令)
+
+
 @click.command()
+
 # region(定义参数)
+
+
 @click.option(
     '-f',
     '--genome',
@@ -48,7 +55,7 @@ def cli():
     'isfasta',
     type=bool,
     default=False,
-    help='True here when running with the ORF region',
+    help='runing in the orf mode',
 )
 @click.option(
     '-r',
@@ -72,17 +79,29 @@ def cli():
 )
 def summary(genome, gff, isfasta, region, motif, output):
     # click.echo(f'{genome}, {gff}, {region}, {motif}, {output}')
+    condition = get_condition(motif)
     if isfasta is True:
         gene_data = get_orf(genome)
+        gene_data.to_pickle('gene_data.pkl')
+        get_pos(gene_data, condition[0])
+        out_orf_summary(output, gene_data, condition[0])
     else:
         gene_data = get_gene_data(genome, gff)
         if region != 'default':
             gene_data = get_region(gene_data, region)
-        gene_data.to_pickle('gene_seq.pkl')
-    condition = get_condition(motif)
-    gene_infor = get_type(gene_data, condition[0], condition[1])
-    out_summary(output, gene_infor, genome, gff, region, motif, condition[0])
+        gene_exon = exon_create(gene_data)
+        gene_id_name = combine_exon(gene_data)
+        gene_exon.to_pickle('gene_exon.pkl')
+        gene_id_name.to_pickle('gene_id_name.pkl')
+        get_pos(gene_exon, condition[0])
+        get_pos(gene_id_name, condition[0])
+        out_gene_summary(output, gene_exon, gene_id_name, condition[0])
     return 1
+    # gene_data.to_pickle('gene_id_name.pkl')
+    # condition = get_condition(motif)
+    # gene_infor = get_type(gene_data, condition[0], condition[1])
+    # out_summary(output, gene_infor, genome, gff, region, motif, condition[0])
+    # return 1
 
 
 @click.command()
